@@ -1,21 +1,28 @@
 import React from 'react';
-import { createNativeStackNavigator } from '@react-navigation/native-stack';
+import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import MapScreen from '../../screens/Map/MapScreen';
+import AuthScreen from '../../screens/Auth/AuthScreen';
 
-export type RootStackParamList = {
+export type RootTabParamList = {
   Map: undefined;
+  Auth: undefined;
 };
 
-const Stack = createNativeStackNavigator<RootStackParamList>();
+const Tab = createBottomTabNavigator<RootTabParamList>();
 
 export default function RootNavigator() {
   return (
-    <Stack.Navigator>
-      <Stack.Screen
+    <Tab.Navigator screenOptions={{ headerTitleAlign: 'center' }}>
+      <Tab.Screen
         name="Map"
         component={MapScreen}
         options={{ title: '지도' }}
       />
-    </Stack.Navigator>
+      <Tab.Screen
+        name="Auth"
+        component={AuthScreen}
+        options={{ title: '로그인' }}
+      />
+    </Tab.Navigator>
   );
 }
